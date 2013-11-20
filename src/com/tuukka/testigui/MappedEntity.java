@@ -30,8 +30,8 @@ public class MappedEntity extends Entity implements Cloneable {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					// TODO Auto-generated method stub
-					
-					selected = (!selected);
+					if (e.getButton()==1) // BUTTON1 
+						selected = (!selected);
 				}
 
 				@Override

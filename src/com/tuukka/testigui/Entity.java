@@ -14,9 +14,9 @@ public class Entity extends JComponent {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Image texture;
-	private String type;
-	private int columns, rows;
-	private String texturePath;
+	protected Image texture;
+	protected String type;
+	protected int columns, rows;
+	protected String texturePath;
 
 }

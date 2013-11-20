@@ -2,14 +2,10 @@ package com.tuukka.testigui;
 
 import java.awt.Component;
 import java.awt.EventQueue;
-import java.awt.TextArea;
-
 import javax.swing.JFrame;
-import javax.swing.JToolBar;
 import java.awt.BorderLayout;
 
 import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;

@@ -6,10 +6,14 @@ package com.tuukka.testigui;
  */
 
 import java.awt.Image;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 
 import javax.swing.JComponent;
 
-public class Entity extends JComponent {
+public class Entity extends JComponent implements Transferable {
 	/**
 	 * 
 	 */
@@ -18,5 +22,27 @@ public class Entity extends JComponent {
 	protected String type;
 	protected int columns, rows;
 	protected String texturePath;
+	
+	
+	
+	
+	
+	
+	@Override
+	public DataFlavor[] getTransferDataFlavors() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean isDataFlavorSupported(DataFlavor flavor) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public Object getTransferData(DataFlavor flavor)
+			throws UnsupportedFlavorException, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

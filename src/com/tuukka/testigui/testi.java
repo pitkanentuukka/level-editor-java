@@ -20,10 +20,14 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
 
 public class testi {
 
-	private JFrame frame;
+	private Map map;
 
 	private JTextArea textArea = new JTextArea();
 	/**
@@ -34,7 +38,7 @@ public class testi {
 			public void run() {
 				try {
 					testi window = new testi();
-					window.frame.setVisible(true);
+					window.map.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,12 +57,15 @@ public class testi {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		/*frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+		map = new Map(800, 800);
+		map.setBounds(400, 400, 500, 500);
+		map.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
+		map.setJMenuBar(menuBar);
 		
 		JMenu mnFile = new JMenu("file");
 		menuBar.add(mnFile);
@@ -97,7 +104,7 @@ public class testi {
                     File file = fileopen.getSelectedFile();
                     String text = readFile(file);
                     //parseDOM(file);
-                    textArea.setText(text);
+                    //textArea.setText(text);
                 }
 			}
 
@@ -105,7 +112,21 @@ public class testi {
 		
 		mnEdit.add(mntmLoadSpriteList);
 		
-		frame.getContentPane().add(textArea, BorderLayout.WEST);
+		//frame.getContentPane().add(textArea, BorderLayout.WEST);
+		map.getContentPane().add(textArea, BorderLayout.WEST);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(0, 438, 70, 15);
+		map.getContentPane().add(lblNewLabel);
+		
+		JList list = new JList();
+		list.setBounds(12, 12, 58, 414);
+		map.getContentPane().add(list);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(82, 12, 404, 429);
+		map.getContentPane().add(panel);
+		
 	}
 
 		
@@ -132,5 +153,4 @@ public class testi {
         }
         return fileString;
     }	
-		
 }

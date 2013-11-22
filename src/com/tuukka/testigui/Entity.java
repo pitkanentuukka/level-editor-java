@@ -10,17 +10,26 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.swing.JComponent;
 
-public class Entity extends JComponent implements Transferable {
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+@Element
+public class Entity extends JComponent implements Transferable, Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	protected Image texture;
+	@Attribute
 	protected String type;
-	protected int columns, rows;
+	@Attribute
+	protected int columns; 
+	@Attribute
+	protected int rows;
+	@Attribute
 	protected String texturePath;
 	
 	

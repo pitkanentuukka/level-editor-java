@@ -4,18 +4,25 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+
 /**
  * these are located on the map
  * @author tuukka
  *
  */
-
+@Element
 public class MappedEntity extends Entity implements Cloneable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int X, Y;
+
+	@Attribute
+	private int X; 
+	@Attribute
+	private int Y;
 	private int draggedAtX;
 	private int draggedAtY;
 	private boolean selected = false;

@@ -72,7 +72,16 @@ public class Entity extends JComponent implements Transferable, Serializable {
 			e.printStackTrace();
 			System.out.println(fullpath);
 		}
-
+		if (texturecols > 1 || texturerows > 1) {
+			int imageHeight = img.getHeight();
+			int imageWidth = img.getWidth();
+			int textureHeight = imageHeight / texturerows;
+			int textureWidth = imageWidth / texturecols;
+			texture = img.getSubimage(0, (imageHeight-textureHeight), textureWidth, textureHeight);
+		} else {
+			texture = img;
+		}
+		
 		//texture = new BufferedImage();
 		
 	}

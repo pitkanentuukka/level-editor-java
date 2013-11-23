@@ -18,16 +18,20 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
 import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
+import org.simpleframework.xml.core.Persister;
+
 public class testi {
 
-	private Map map;
+	private Level map;
+	//private List<Entity> entityList = new ArrayList<Entity>();
+	private Entitylist entitylist;
+	private Persister persister = new Persister();
+
 
 	private JTextArea textArea = new JTextArea();
 	/**
@@ -60,7 +64,7 @@ public class testi {
 		/*frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
-		map = new Map(800, 800);
+		map = new Level(800, 800);
 		map.setBounds(400, 400, 500, 500);
 		map.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -102,9 +106,15 @@ public class testi {
 
                 if (ret == JFileChooser.APPROVE_OPTION) {
                     File file = fileopen.getSelectedFile();
-                    String text = readFile(file);
+                    //String text = readFile(file);
                     //parseDOM(file);
                     //textArea.setText(text);
+                    try {
+						entitylist = persister.read(Entitylist.class, file);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
                 }
 			}
 

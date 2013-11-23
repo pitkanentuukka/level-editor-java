@@ -26,15 +26,13 @@ public class Entity extends JComponent implements Transferable, Serializable {
 	@Attribute
 	protected String type;
 	@Attribute
-	protected int columns; 
+	protected int texturerows; 
 	@Attribute
-	protected int rows;
+	protected int texturecols;
 	@Attribute
-	protected String texturePath;
+	protected String texturefile;
 	
-	
-	
-	
+	protected DataFlavor myFlavor = new DataFlavor(Entity.class, "entity");
 	
 	
 	@Override

@@ -51,5 +51,9 @@ public class Entity extends JComponent implements Transferable, Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public String toString() {
+		String string = "type :" + this.type + ", texture: " + this.texturefile + ", rows & cols : " + texturerows + ", " + texturecols;
+		return string;
+	}
 
 }

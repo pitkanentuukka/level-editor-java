@@ -30,6 +30,7 @@ public class testi {
 	private Level map;
 	//private List<Entity> entityList = new ArrayList<Entity>();
 	private Entitylist entitylist;
+	private Entity entity;
 	private Persister persister = new Persister();
 
 
@@ -110,7 +111,8 @@ public class testi {
                     //parseDOM(file);
                     //textArea.setText(text);
                     try {
-						entitylist = persister.read(Entitylist.class, file);
+						entity = persister.read(Entity.class, file);
+						System.out.println(entity.toString());
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

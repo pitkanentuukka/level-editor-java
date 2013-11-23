@@ -9,9 +9,12 @@ import java.awt.Image;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import org.simpleframework.xml.Attribute;
@@ -31,6 +34,9 @@ public class Entity extends JComponent implements Transferable, Serializable {
 	protected int texturecols;
 	@Attribute
 	protected String texturefile;
+	
+	protected String basepath;
+	protected String fullpath;
 	
 	protected DataFlavor myFlavor = new DataFlavor(Entity.class, "entity");
 	
@@ -54,6 +60,21 @@ public class Entity extends JComponent implements Transferable, Serializable {
 	public String toString() {
 		String string = "type :" + this.type + ", texture: " + this.texturefile + ", rows & cols : " + texturerows + ", " + texturecols;
 		return string;
+	}
+
+	public void prepareThySelf(String basepath) {
+		this.basepath = basepath;
+		fullpath = basepath + texturefile;
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File(basepath + texturefile));
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println(fullpath);
+		}
+
+		//texture = new BufferedImage();
+		
 	}
 
 }

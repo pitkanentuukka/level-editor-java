@@ -32,8 +32,10 @@ public class testi {
 	private Entitylist entitylist;
 	private Entity entity;
 	private Persister persister = new Persister();
+	
+	private String PROJECT_BASE_PATH = "/home/tuukka/workspace/fromscratch/";
 
-
+	
 	private JTextArea textArea = new JTextArea();
 	/**
 	 * Launch the application.
@@ -112,7 +114,8 @@ public class testi {
                     //textArea.setText(text);
                     try {
 						entity = persister.read(Entity.class, file);
-						System.out.println(entity.toString());
+						//System.out.println(entity.toString());
+						entity.prepareThySelf(PROJECT_BASE_PATH);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

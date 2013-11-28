@@ -75,6 +75,11 @@ public class MappedEntity extends Entity implements Cloneable {
 		});
 
 
+		}
 
+		public void setLocation(int x, int y) {
+			super.setLocation(x, y);
+			this.X = x;
+			this.Y = y;
 	}
 }

@@ -172,7 +172,41 @@ public class testi {
 		);
 		mnEdit.add(mntmSaveSprite);*/
 		mnEdit.add(mntmLoadSpriteList);
+		JMenuItem mntmSaveLevel = new JMenuItem("save level");
+		final MappedEntity testientity1 = new MappedEntity("testi", 1, 1, "ui_ball_1.png" );
+		testientity1.setLocation(1, 1);
+		final MappedEntity testientity2 = new MappedEntity("testi2", 1, 1, "ui_ball_1.png" );
+		testientity2.setLocation(2, 2);
+		final MappedEntity testientity3 = new MappedEntity("testi3", 1, 1, "ui_ball_1.png" );
+		testientity3.setLocation(3, 3);
 		
+		final Level testilevel = new Level(156, 156);
+		testilevel.add(testientity1);
+		testilevel.add(testientity2);
+		testilevel.add(testientity3);
+		
+		mntmSaveLevel.addActionListener(new ActionListener() {
+			
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Serializer srlzr = new Persister();
+				File rslt = new File("levelsavertest.xml");
+				try {
+					srlzr.write(testilevel, rslt);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+					
+			
+			
+				
+			}
+		});
+		
+		mnEdit.add(mntmSaveLevel);
 		//frame.getContentPane().add(textArea, BorderLayout.WEST);
 		map.getContentPane().add(textArea, BorderLayout.WEST);
 		

@@ -8,15 +8,25 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
-@Element
+@Root
 public class Level extends JFrame implements DropTargetListener, Serializable {
 
+	/**
+	 * 
+	 */
+	@ElementList
+    private List<MappedEntity> list;
+	private static final long serialVersionUID = 1L;
 	@Attribute
 	private int width;
 	@Attribute
@@ -29,7 +39,7 @@ public class Level extends JFrame implements DropTargetListener, Serializable {
 
 		this.setLayout(null); // so we can set the positions manually
 
-
+		list = new LinkedList<MappedEntity>();
 
 		addMouseListener(new MouseListener(){
 
@@ -110,6 +120,10 @@ public class Level extends JFrame implements DropTargetListener, Serializable {
 	public void drop(DropTargetDropEvent dtde) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public void add(MappedEntity me) {
+		list.add(me);
 	}
 
 }

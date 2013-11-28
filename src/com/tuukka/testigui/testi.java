@@ -2,6 +2,8 @@ package com.tuukka.testigui;
 
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 
@@ -23,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
+import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 public class testi {
@@ -35,6 +38,7 @@ public class testi {
 	
 	private String PROJECT_BASE_PATH = "/home/tuukka/workspace/fromscratch/";
 
+	private JList list;
 	
 	private JTextArea textArea = new JTextArea();
 	/**
@@ -71,6 +75,15 @@ public class testi {
 		map.setBounds(400, 400, 500, 500);
 		map.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+				list = new JList();
+		list.setBounds(12, 12, 58, 414);
+		map.getContentPane().add(list);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(82, 12, 404, 429);
+		map.getContentPane().add(panel);
+		
+		
 		JMenuBar menuBar = new JMenuBar();
 		map.setJMenuBar(menuBar);
 		
@@ -97,7 +110,7 @@ public class testi {
 		
 		JMenuItem mntmLoadSpriteList = new JMenuItem("load sprite list");
 		mntmLoadSpriteList.addActionListener(new ActionListener() {
-			private Component panel;
+			private JPanel panel = new JPanel();
 
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -113,9 +126,18 @@ public class testi {
                     //parseDOM(file);
                     //textArea.setText(text);
                     try {
-						entity = persister.read(Entity.class, file);
+						/*entity = persister.read(Entity.class, file);
 						//System.out.println(entity.toString());
 						entity.prepareThySelf(PROJECT_BASE_PATH);
+						list.add(entity);
+						entity.setVisible(true);*/
+                    	entitylist = persister.read(Entitylist.class, file);
+
+                    	if (entitylist.getLength() != 4 ) {
+                    		// something is fucked
+                    		System.out.println("entitylist length is wrong, the world is ending!");
+                    		
+                    	}
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -124,7 +146,31 @@ public class testi {
 			}
 
 		});
+		/*JMenuItem mntmSaveSprite = new JMenuItem("save sprite");
+		final Entity testientity1 = new Entity("testi", 1, 1, "ui_ball_1.png" );
+		final Entity testientity2 = new Entity("testi2", 1, 1, "ui_ball_1.png" );
+		final Entity testientity3 = new Entity("testi2", 1, 1, "ui_ball_1.png" );
+		final Entitylist entitylist = new Entitylist(2);
 		
+		entitylist.add(testientity1);
+		entitylist.add(testientity2);
+		entitylist.add(testientity3);
+		mntmSaveSprite.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				Serializer serializer = new Persister();
+				File result = new File("serializertest2.xml");
+				try {
+					serializer.write(entitylist, result);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		);
+		mnEdit.add(mntmSaveSprite);*/
 		mnEdit.add(mntmLoadSpriteList);
 		
 		//frame.getContentPane().add(textArea, BorderLayout.WEST);
@@ -134,14 +180,7 @@ public class testi {
 		lblNewLabel.setBounds(0, 438, 70, 15);
 		map.getContentPane().add(lblNewLabel);
 		
-		JList list = new JList();
-		list.setBounds(12, 12, 58, 414);
-		map.getContentPane().add(list);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(82, 12, 404, 429);
-		map.getContentPane().add(panel);
-		
+
 	}
 
 		

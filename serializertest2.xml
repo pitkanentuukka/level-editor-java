@@ -1,0 +1,6 @@
+<entitylist>
+   <entities length="2">
+      <entity type="testi" texturerows="1" texturecols="1" texturefile="ui_ball_1.png"/>
+      <entity type="testi2" texturerows="1" texturecols="1" texturefile="ui_ball_1.png"/>
+   </entities>
+</entitylist>

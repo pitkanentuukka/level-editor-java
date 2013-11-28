@@ -5,6 +5,8 @@ package com.tuukka.testigui;
  * in the gui where you can choose and drag and drop these to the canvas (map).
  */
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
 import org.simpleframework.xml.Attribute;
@@ -40,6 +43,18 @@ public class Entity extends JComponent implements Transferable, Serializable {
 	
 	protected DataFlavor myFlavor = new DataFlavor(Entity.class, "entity");
 	
+	protected int textureHeight;
+	protected int textureWidth;
+	
+	protected ImageIcon icon;
+	
+	public Entity(@Attribute(name="type")String type, @Attribute(name="texturerows")int texturerows, 
+			@Attribute(name="texturecols")int texturecols, @Attribute(name="texturefile")String texturefile) {
+		this.type = type;
+		this.texturerows = texturerows;
+		this.texturecols = texturecols;
+		this.texturefile = texturefile;
+	}
 	
 	@Override
 	public DataFlavor[] getTransferDataFlavors() {
@@ -75,15 +90,35 @@ public class Entity extends JComponent implements Transferable, Serializable {
 		if (texturecols > 1 || texturerows > 1) {
 			int imageHeight = img.getHeight();
 			int imageWidth = img.getWidth();
-			int textureHeight = imageHeight / texturerows;
-			int textureWidth = imageWidth / texturecols;
+			textureHeight = imageHeight / texturerows;
+			textureWidth = imageWidth / texturecols;
 			texture = img.getSubimage(0, (imageHeight-textureHeight), textureWidth, textureHeight);
 		} else {
+			textureWidth = img.getWidth();
+			textureHeight = img.getHeight();
 			texture = img;
+
 		}
+		//this.createImage(textureWidth, textureHeight);
 		
 		//texture = new BufferedImage();
 		
+		icon = new ImageIcon(texture);
 	}
 
+    protected void paintComponent(Graphics g) {
+        if (isOpaque()) { //paint background
+            g.setColor(getBackground());
+            g.fillRect(0, 0, getWidth(), getHeight());
+        }
+
+        if (icon != null) {
+            Graphics2D g2d = (Graphics2D)g.create();
+
+            g2d.drawImage(texture, 0, 0, null);
+            //icon.paintIcon(this, g2d, 0, this.textureHeight);
+         
+            g2d.dispose(); //clean up
+        }
+    }
 }
